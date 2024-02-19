@@ -10,7 +10,7 @@ export module ui {
     export const SubScreen = _SubScreen
     export const UiButton = _UiButton
     export const Screen = _Screen
-    export const Entity = _Entity
+    export abstract class Entity extends _Entity {}
     export const Widget = _Widget
 }
 
