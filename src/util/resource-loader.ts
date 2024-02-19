@@ -57,8 +57,16 @@ class ResourceLoader extends Observable {
         for (const resource of resourceItems) {
             loadResource(resource, this, () => {
                 queueLoadedCount++
+                
                 this.incrementLoadedCount()
-                this.notifyAll("loadedResource", resource)
+
+                this.notifyAll(
+                    "loadedResource",
+                    resource,
+                    id,
+                    resourceItems.length,
+                    queueLoadedCount
+                )
 
                 if (queueLoadedCount === resourceItems.length) {
                     this.notifyAll("loadedResourceQueue", id, resourceItems)

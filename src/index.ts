@@ -1,33 +1,24 @@
-import ResourceLoader from "./util/resource-loader"
-import Screen from "./ui/screen"
-import Renderer from "./util/render"
+import _ResourceLoader from "./util/resource-loader"
+import _WidgetManager from "./ui/widget-manager"
+import _Observable from "./common/observable"
+import _Renderer from "./util/render"
+import _UiButton from "./ui/button"
+import _Screen from "./ui/screen"
+import GamxGame from "./gamx"
 
-export type GamxGameOptions = {
-    document: Document
-    rootQuery: string
+export module common {
+    export const Observable = _Observable
 }
 
-class GamxGame {
-    public resourceLoader: ResourceLoader
-    public screen: Screen
-    public renderer: Renderer
+export module util {
+    export const Renderer = _Renderer
+    export const ResourceLoader = _ResourceLoader
+}
 
-    public constructor({ document, rootQuery }: GamxGameOptions) {
-        this.resourceLoader = new ResourceLoader()
-
-        this.screen = new Screen({
-            document: document,
-            rootQuery: rootQuery
-        })
-
-        this.renderer = new Renderer({
-            canvas: this.screen.canvas,
-            subScreen: { entities: [] },
-            requestAnimationFrame: requestAnimationFrame
-        })
-    }
-
-    public setup() {}
+export module ui {
+    export const Screen = _Screen
+    export const UiButton = _UiButton
+    export const WidgetManager = _WidgetManager
 }
 
 export default GamxGame

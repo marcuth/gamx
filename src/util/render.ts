@@ -1,4 +1,5 @@
 import { RequestAnimationFrame } from "../common/types"
+import Observable from "../common/observable"
 
 export type Entity = {
     draw: (ctx: CanvasRenderingContext2D) => any
@@ -14,7 +15,7 @@ export type RendererOptions = {
     requestAnimationFrame: RequestAnimationFrame
 }
 
-class Renderer {
+class Renderer extends Observable {
     public isRunning: boolean
     public fps: number
 
@@ -28,6 +29,7 @@ class Renderer {
         subScreen,
         requestAnimationFrame
     }: RendererOptions) {
+        super()
         this.canvas = canvas
         this.subScreen = subScreen
         this.requestAnimationFrame = requestAnimationFrame
@@ -63,6 +65,8 @@ class Renderer {
     }
 
     private render() {
+        this.notifyAll("frame", this.fps)
+
         const ctx = this.canvas.getContext("2d")!
 
         this.subScreen.entities.forEach(entity => {

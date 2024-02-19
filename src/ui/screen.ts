@@ -1,8 +1,7 @@
 import { v4 as uuidv4 } from "uuid"
 
+import Observable from "../common/observable"
 import WidgetManager from "./widget-manager"
-import UiButton from "./button"
-import Renderer from "../util/render"
 
 export type ScreenOptions = {
     document: Document
@@ -18,11 +17,13 @@ export class ScreenRootNotFoundError extends Error {
 
 export type Root = HTMLElement | null
 
-class Screen {
+class Screen extends Observable {
     public canvas: HTMLCanvasElement
     public widgetManager: WidgetManager
 
     public constructor({ document, rootQuery }: ScreenOptions) {
+        super()
+
         const root: Root = document.querySelector(rootQuery)
 
         if (!root) {
@@ -38,6 +39,7 @@ class Screen {
         const canvas = document.createElement("canvas")
         canvas.id = uuidv4()
         element.appendChild(canvas)
+        this.notifyAll("canvasCreated", canvas)
         return canvas
     }
 }

@@ -1,26 +1,13 @@
 import { v4 as uuidv4 } from "uuid"
 
 import { Coordinates } from "../common/types"
+import Observable from "../common/observable"
 
 export type UiButtonOptions = {
     ctx: CanvasRenderingContext2D
     coordinates: Coordinates
     width: number
     height: number
-    onClick?: () => any
-    onDoubleClick?: () => any
-    onMouseUp?: () => any
-    onMouseDown?: () => any
-}
-
-export type ImageClipping = {
-    x: number
-    y: number
-    width: number
-    height: number
-}
-
-export type UiButtonDrawOptions = {
     image?: HTMLImageElement
     imageMouseOver?: HTMLImageElement
     imageClipping?: ImageClipping
@@ -29,17 +16,25 @@ export type UiButtonDrawOptions = {
     colorMouseOver?: string
 }
 
-class UiButton {
+export type ImageClipping = {
+    x: number
+    y: number
+    width: number
+    height: number
+}
+class UiButton extends Observable {
     public id: string
     public ctx: CanvasRenderingContext2D
     public coordinates: Coordinates
     public width: number
     public height: number
+    public image?: HTMLImageElement
+    public imageMouseOver?: HTMLImageElement
+    public imageClipping?: ImageClipping
+    public imageMouseOverClipping?: ImageClipping
+    public color?: string
+    public colorMouseOver?: string
 
-    private onClick?: () => any
-    private onDoubleClick?: () => any
-    private onMouseUp?: () => any
-    private onMouseDown?: () => any
     private isEventListenersAdded: boolean = false
     private lastMouseMovementCheck: number = 0
     private isMouseOver: boolean = false
@@ -49,20 +44,25 @@ class UiButton {
         coordinates,
         width,
         height,
-        onClick,
-        onDoubleClick,
-        onMouseUp,
-        onMouseDown
+        image,
+        imageClipping,
+        imageMouseOver,
+        imageMouseOverClipping,
+        color,
+        colorMouseOver
     }: UiButtonOptions) {
+        super()
         this.id = uuidv4()
         this.ctx = ctx
         this.coordinates = coordinates
         this.width = width
         this.height = height
-        this.onClick = onClick
-        this.onDoubleClick = onDoubleClick
-        this.onMouseUp = onMouseUp
-        this.onMouseDown = onMouseDown
+        this.image = image
+        this.imageClipping = imageClipping
+        this.imageMouseOver = imageMouseOver
+        this.imageMouseOverClipping = imageMouseOverClipping
+        this.color = color
+        this.colorMouseOver = colorMouseOver
         this.handleClick = this.handleClick.bind(this)
         this.handleDoubleClick = this.handleDoubleClick.bind(this)
         this.handleMouseUp = this.handleMouseUp.bind(this)
@@ -120,8 +120,8 @@ class UiButton {
             coordinates,
             width,
             height
-        ) && this.onClick) {
-            this.onClick()
+        )) {
+            this.notifyAll("click")
         }
     }
 
@@ -134,8 +134,8 @@ class UiButton {
             coordinates,
             width,
             height
-        ) && this.onDoubleClick) {
-            this.onDoubleClick()
+        )) {
+            this.notifyAll("doubleClick")
         }
     }
 
@@ -148,8 +148,8 @@ class UiButton {
             coordinates,
             width,
             height
-        ) && this.onMouseUp) {
-            this.onMouseUp()
+        )) {
+            this.notifyAll("mouseUp")
         }
     }
 
@@ -162,26 +162,27 @@ class UiButton {
             coordinates,
             width,
             height
-        ) && this.onMouseDown) {
-            this.onMouseDown()
+        )) {
+            this.notifyAll("mouseDown")
         }
     }
 
-    public draw({
-        image,
-        imageClipping,
-        imageMouseOver,
-        imageMouseOverClipping,
-        color,
-        colorMouseOver
-    }: UiButtonDrawOptions) {        
+    public draw() {
+        const {
+            ctx,
+            image,
+            color,
+            imageClipping,
+            colorMouseOver,
+            imageMouseOver,
+            imageMouseOverClipping
+        } = this
+
         if (!image && !color) return
 
         const selectedImage = this.isMouseOver ? (imageMouseOver && imageMouseOverClipping ? imageMouseOver : image) : image
         const selectedImageClipping = this.isMouseOver ? (imageMouseOver && imageMouseOverClipping ? imageMouseOverClipping : imageClipping) : imageClipping
         const selectedColor = this.isMouseOver ? (colorMouseOver ? colorMouseOver : color) : color
-
-        const { ctx } = this
 
         if (selectedColor) {
             ctx.fillStyle = selectedColor
@@ -229,6 +230,8 @@ class UiButton {
             ctx.canvas.addEventListener("mousemove", this.handleMouseMove)
             this.isEventListenersAdded = true
         }
+
+        this.notifyAll("drawn")
     }
 
     public destroy() {
@@ -243,6 +246,8 @@ class UiButton {
             ctx.canvas.style.cursor = "auto"
             this.isEventListenersAdded = false
         }
+
+        this.notifyAll("destroyed")
     }
 }
 

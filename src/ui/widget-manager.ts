@@ -1,17 +1,22 @@
+import Observable from "../common/observable"
+
 export type Widget = {
     id: string
     destroy: () => any
 }
 
-class WidgetManager {
+class WidgetManager extends Observable {
     private widgets: Widget[]
 
     public constructor() {
+        super()
+    
         this.widgets = []
     }
 
     public add(widget: Widget): void {
         this.widgets.push(widget)
+        this.notifyAll("widgetAdded", widget)
     }
 
     public get(id: string): Widget | null {
@@ -32,12 +37,14 @@ class WidgetManager {
             const widget = this.widgets[index]
             widget.destroy()
             this.widgets.splice(index, 1)
+            this.notifyAll("widgetRemoved", widget)
         }
     }
 
-    public removeAllButtons(): void {
+    public removeAllWidgets(): void {
         this.widgets.forEach(widget => widget.destroy())
         this.widgets = []
+        this.notifyAll("AllWidgetsRemoved")
     }
 }
 
