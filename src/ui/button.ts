@@ -4,7 +4,7 @@ import { Coordinates } from "../common/types"
 import Observable from "../common/observable"
 import Widget from "./widget"
 
-export type UiButtonOptions = {
+export type ButtonOptions = {
     ctx: CanvasRenderingContext2D
     coordinates: Coordinates
     width: number
@@ -23,7 +23,7 @@ export type ImageClipping = {
     width: number
     height: number
 }
-class UiButton extends Observable implements Widget {
+class Button extends Observable implements Widget {
     public id: string
     public ctx: CanvasRenderingContext2D
     public coordinates: Coordinates
@@ -51,7 +51,7 @@ class UiButton extends Observable implements Widget {
         imageMouseOverClipping,
         color,
         colorMouseOver
-    }: UiButtonOptions) {
+    }: ButtonOptions) {
         super()
         this.id = uuidv4()
         this.ctx = ctx
@@ -252,4 +252,4 @@ class UiButton extends Observable implements Widget {
     }
 }
 
-export default UiButton
+export default Button
