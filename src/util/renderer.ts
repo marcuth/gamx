@@ -95,7 +95,7 @@ class Renderer extends Observable {
         }
 
         if (this.isRunning) {
-            return this.requestAnimationFrame.call(this, () => {
+            return this.requestAnimationFrame.bind(this)(() => {
                 this.calculateFps(Date.now())
                 this.render()
             })
