@@ -7,11 +7,11 @@ import _Widget from "./widget"
 
 export module ui {
     export const WidgetManager = _WidgetManager
-    export const SubScreen = _SubScreen
+    export abstract class SubScreen extends _SubScreen {}
     export const UiButton = _UiButton
     export const Screen = _Screen
     export abstract class Entity extends _Entity {}
-    export const Widget = _Widget
+    export abstract class Widget extends _Widget {}
 }
 
 export default ui

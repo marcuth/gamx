@@ -1,14 +1,11 @@
 import { RequestAnimationFrame } from "../common/types"
 import Observable from "../common/observable"
-import Entity from "ui/entity"
-
-export type SubScreen = {
-    entities: Entity[]
-}
+import SubScreen from "ui/sub-screen"
 
 export type RendererOptions = {
     canvas: HTMLCanvasElement
-    subScreen: SubScreen
+    subScreen?: SubScreen
+    defaultBackgroundColor: string
     requestAnimationFrame: RequestAnimationFrame
 }
 
@@ -17,18 +14,21 @@ class Renderer extends Observable {
     public fps: number
 
     private canvas: HTMLCanvasElement
-    private subScreen: SubScreen
+    private subScreen?: SubScreen
     private requestAnimationFrame: RequestAnimationFrame
+    private defaultBackgroundColor: string
     private lastFrameTime: number
 
     public constructor({
         canvas,
         subScreen,
+        defaultBackgroundColor,
         requestAnimationFrame
     }: RendererOptions) {
         super()
         this.canvas = canvas
         this.subScreen = subScreen
+        this.defaultBackgroundColor = defaultBackgroundColor
         this.requestAnimationFrame = requestAnimationFrame
         this.isRunning = false
         this.lastFrameTime = 0
@@ -61,14 +61,38 @@ class Renderer extends Observable {
         this.subScreen = newSubScreen
     }
 
+    private clearScreen() {
+        const ctx = this.canvas.getContext("2d")!
+
+        ctx.clearRect(
+            0,
+            0,
+            this.canvas.width,
+            this.canvas.height
+        )
+    }
+
     private render() {
         this.notifyAll("frame", this.fps)
 
         const ctx = this.canvas.getContext("2d")!
 
-        this.subScreen.entities.forEach(entity => {
-            entity.draw(ctx)
-        })
+        this.clearScreen()
+
+        if (this.subScreen) {
+            this.subScreen.entities.forEach(entity => {
+                entity.draw(ctx)
+            })
+        } else {
+            ctx.fillStyle = this.defaultBackgroundColor
+
+            ctx.fillRect(
+                0,
+                0,
+                this.canvas.width,
+                this.canvas.height
+            )
+        }
 
         if (this.isRunning) {
             return this.requestAnimationFrame(() => {

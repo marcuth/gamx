@@ -1,5 +1,5 @@
-import GamxGame from "./gamx"
 import common from "common"
+import Gamx from "./gamx"
 import util from "util"
 import ui from "./ui"
 
@@ -9,4 +9,4 @@ export {
     ui
 }
 
-export default GamxGame
+export default Gamx

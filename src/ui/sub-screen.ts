@@ -4,12 +4,14 @@ export type SubScreenOptions = {
     entities: Entity[]
 }
 
-class SubScreen {
+abstract class SubScreen {
     public entities: Entity[]
 
     public constructor({ entities }: SubScreenOptions) {
         this.entities = entities
     }
+
+    public abstract setup(): any
 }
 
 export default SubScreen
