@@ -1,9 +1,6 @@
 import { RequestAnimationFrame } from "../common/types"
 import Observable from "../common/observable"
-
-export type Entity = {
-    draw: (ctx: CanvasRenderingContext2D) => any
-}
+import Entity from "ui/entity"
 
 export type SubScreen = {
     entities: Entity[]

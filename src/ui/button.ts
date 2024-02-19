@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid"
 
 import { Coordinates } from "../common/types"
 import Observable from "../common/observable"
+import Widget from "./widget"
 
 export type UiButtonOptions = {
     ctx: CanvasRenderingContext2D
@@ -22,7 +23,7 @@ export type ImageClipping = {
     width: number
     height: number
 }
-class UiButton extends Observable {
+class UiButton extends Observable implements Widget {
     public id: string
     public ctx: CanvasRenderingContext2D
     public coordinates: Coordinates

@@ -1,13 +1,14 @@
 {
   "name": "gamx",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "declaration": "./dist/index.d.ts",
+  "version": "1.0.1",
+  "description": "Gamx is a library to help create JavaScript games for the browser.",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "keywords": [],
-  "author": "",
+  "author": "Marcuth",
   "license": "ISC",
   "dependencies": {
     "uuid": "^9.0.1"

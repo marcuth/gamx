@@ -1,9 +1,5 @@
 import Observable from "../common/observable"
-
-export type Widget = {
-    id: string
-    destroy: () => any
-}
+import Widget from "./widget"
 
 class WidgetManager extends Observable {
     private widgets: Widget[]
