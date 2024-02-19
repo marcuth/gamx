@@ -29,7 +29,7 @@ class Renderer extends Observable {
         this.canvas = canvas
         this.subScreen = subScreen
         this.defaultBackgroundColor = defaultBackgroundColor
-        this.requestAnimationFrame = requestAnimationFrame.bind(this)
+        this.requestAnimationFrame = requestAnimationFrame
         this.isRunning = false
         this.lastFrameTime = 0
         this.fps = 0
@@ -95,7 +95,7 @@ class Renderer extends Observable {
         }
 
         if (this.isRunning) {
-            return this.requestAnimationFrame(() => {
+            return this.requestAnimationFrame.call(this, () => {
                 this.calculateFps(Date.now())
                 this.render()
             })
