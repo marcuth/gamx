@@ -1,4 +1,4 @@
-import KeyboardListener from "util/keyboard-listener"
+import KeyboardListener from "./util/keyboard-listener"
 import ResourceLoader from "./util/resource-loader"
 import Screen, { ScreenSize } from "./ui/screen"
 import Renderer from "./util/render"
