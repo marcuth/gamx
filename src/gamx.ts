@@ -37,7 +37,6 @@ class Gamx {
 
         this.renderer = new Renderer({
             canvas: this.screen.canvas,
-            requestAnimationFrame: requestAnimationFrame,
             defaultBackgroundColor: defaultBackgroundColor ?? "#000"
         })
 

@@ -1,4 +1,3 @@
-import { RequestAnimationFrame } from "../common/types"
 import Observable from "../common/observable"
 import SubScreen from "../ui/sub-screen"
 
@@ -6,7 +5,6 @@ export type RendererOptions = {
     canvas: HTMLCanvasElement
     subScreen?: SubScreen
     defaultBackgroundColor: string
-    requestAnimationFrame: RequestAnimationFrame
 }
 
 class Renderer extends Observable {
@@ -15,21 +13,18 @@ class Renderer extends Observable {
 
     private canvas: HTMLCanvasElement
     private subScreen?: SubScreen
-    private requestAnimationFrame: RequestAnimationFrame
     private defaultBackgroundColor: string
     private lastFrameTime: number
 
     public constructor({
         canvas,
         subScreen,
-        defaultBackgroundColor,
-        requestAnimationFrame
+        defaultBackgroundColor
     }: RendererOptions) {
         super()
         this.canvas = canvas
         this.subScreen = subScreen
         this.defaultBackgroundColor = defaultBackgroundColor
-        this.requestAnimationFrame = requestAnimationFrame
         this.isRunning = false
         this.lastFrameTime = 0
         this.fps = 0
@@ -95,7 +90,7 @@ class Renderer extends Observable {
         }
 
         if (this.isRunning) {
-            return this.requestAnimationFrame((() => {
+            return requestAnimationFrame((() => {
                 this.calculateFps(Date.now())
                 this.render()
             }).bind(this))
