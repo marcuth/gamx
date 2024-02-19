@@ -1,6 +1,6 @@
 import { RequestAnimationFrame } from "../common/types"
 import Observable from "../common/observable"
-import SubScreen from "ui/sub-screen"
+import SubScreen from "../ui/sub-screen"
 
 export type RendererOptions = {
     canvas: HTMLCanvasElement

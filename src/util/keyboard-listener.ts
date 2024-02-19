@@ -1,4 +1,4 @@
-import Observable from "common/observable"
+import Observable from "../common/observable"
 
 export type ModifierKeys = {
     ctrl: boolean
