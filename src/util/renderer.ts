@@ -29,7 +29,7 @@ class Renderer extends Observable {
         this.canvas = canvas
         this.subScreen = subScreen
         this.defaultBackgroundColor = defaultBackgroundColor
-        this.requestAnimationFrame = requestAnimationFrame
+        this.requestAnimationFrame = requestAnimationFrame.bind(this)
         this.isRunning = false
         this.lastFrameTime = 0
         this.fps = 0

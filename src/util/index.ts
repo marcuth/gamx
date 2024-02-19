@@ -1,6 +1,6 @@
 import _KeyboardListener from "./keyboard-listener"
 import _ResourceLoader from "./resource-loader"
-import _Renderer from "./render"
+import _Renderer from "./renderer"
 
 module util {
     export const Renderer = _Renderer

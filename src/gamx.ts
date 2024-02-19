@@ -1,7 +1,7 @@
 import KeyboardListener from "./util/keyboard-listener"
 import ResourceLoader from "./util/resource-loader"
 import Screen, { ScreenSize } from "./ui/screen"
-import Renderer from "./util/render"
+import Renderer from "./util/renderer"
 
 export type GamxOptions = {
     document: Document
