@@ -8,25 +8,27 @@ export type GamxOptions = {
     rootQuery: string
     screenSize: ScreenSize
     defaultBackgroundColor?: string
+    state: any
 }
 
 export type GamxState = {
     [key: string]: any
 }
 
-class Gamx {
+class Gamx<GameState = GamxState> {
     public resourceLoader: ResourceLoader
     public screen: Screen
     public renderer: Renderer
     public keyboardListener: KeyboardListener
-    public state: GamxState
+    public state: GameState
     
     public constructor({
         document,
         rootQuery,
         screenSize,
-        defaultBackgroundColor
-    }: GamxOptions) {
+        defaultBackgroundColor,
+        state
+    }: GamxOptions & { state: GameState }) {
         this.resourceLoader = new ResourceLoader()
 
         this.screen = new Screen({
@@ -42,16 +44,16 @@ class Gamx {
 
         this.keyboardListener = new KeyboardListener({ document: document })
 
-        this.state = {}
+        this.state = state
 
         this.setup()
     }
 
-    public updateState(newState: GamxState): void {
-        this.state = Object.assign(this.state, newState)
+    public updateState(newState: GameState): void {
+        this.state = Object.assign(this.state as object, newState)
     }
 
-    public setState(newState: GamxState): void {
+    public setState(newState: GameState): void {
         this.state = {...newState}
     }
 

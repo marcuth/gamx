@@ -4,20 +4,23 @@ import { GamxState } from "gamx"
 export type SubScreenOptions = {
     ctx: CanvasRenderingContext2D
     components: Component[]
-    gameState: GamxState
 }
 
-class SubScreen {
+class SubScreen<T = GamxState> {
     public ctx: CanvasRenderingContext2D
     public components: Component[]
+    public gameState:T
 
     public constructor({
         ctx,
         components,
         gameState
-    }: SubScreenOptions) {
+    }: SubScreenOptions & {
+        gameState: T
+    }) {
         this.ctx = ctx
         this.components = components
+        this.gameState = gameState
         this.setup()
     }
 
