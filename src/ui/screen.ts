@@ -80,6 +80,11 @@ class Screen extends Observable {
         this.canvas.width = newSize.width
         this.canvas.height = newSize.height
     }
+
+    public destroy(): void {
+        this.widgetManager.removeAllWidgets()
+        this.canvas.remove()
+    }
 }
 
 export default Screen

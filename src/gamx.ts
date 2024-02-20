@@ -52,6 +52,12 @@ class Gamx {
     }
 
     public setup(): void {}
+
+    public destroy(): void {
+        this.renderer.pause()
+        this.keyboardListener.destroy()
+        this.screen.destroy()
+    }
 }
 
 export default Gamx
