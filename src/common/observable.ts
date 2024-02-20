@@ -15,7 +15,7 @@ class Observable {
 
     protected notifyAll(event: string, ...args: any[]): void {
         this.observers.forEach(observer => {
-            observer(event, args)
+            observer(event, ...args)
         })
     }
 }
