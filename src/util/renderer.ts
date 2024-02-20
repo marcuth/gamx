@@ -5,11 +5,14 @@ export type RendererOptions = {
     canvas: HTMLCanvasElement
     subScreen?: SubScreen
     defaultBackgroundColor: string
+    targetFps?: number
 }
 
 class Renderer extends Observable {
     public isRunning: boolean
     public fps: number
+    public targetFps?: number
+    public frameDelay: number
 
     private canvas: HTMLCanvasElement
     private subScreen?: SubScreen
@@ -19,7 +22,8 @@ class Renderer extends Observable {
     public constructor({
         canvas,
         subScreen,
-        defaultBackgroundColor
+        defaultBackgroundColor,
+        targetFps
     }: RendererOptions) {
         super()
         this.canvas = canvas
@@ -28,6 +32,8 @@ class Renderer extends Observable {
         this.isRunning = false
         this.lastFrameTime = 0
         this.fps = 0
+        this.targetFps = targetFps
+        this.frameDelay = this.targetFps ? 1000 / this.targetFps : 0
     }
 
     private calculateFps(currentTime: number) {
@@ -39,6 +45,11 @@ class Renderer extends Observable {
         const elapsedMilliseconds = currentTime - this.lastFrameTime
         this.fps = Math.round(1000 / elapsedMilliseconds)
         this.lastFrameTime = currentTime
+    }
+
+    public setTargetFps(newTarget: number): void {
+        this.targetFps = newTarget
+        this.frameDelay = 1000 / this.targetFps
     }
 
     public pause() {
@@ -75,7 +86,7 @@ class Renderer extends Observable {
         this.clearScreen()
 
         if (this.subScreen) {
-            this.subScreen.entities.forEach(entity => {
+            this.subScreen.components.forEach(entity => {
                 entity.draw(ctx)
             })
         } else {
@@ -90,10 +101,18 @@ class Renderer extends Observable {
         }
 
         if (this.isRunning) {
-            return requestAnimationFrame((() => {
-                this.calculateFps(Date.now())
-                this.render()
-            }).bind(this))
+            const currentTime = Date.now()
+            const elapsed = currentTime - this.lastFrameTime
+
+            if (elapsed > this.frameDelay) {
+                this.calculateFps(currentTime)
+                requestAnimationFrame(this.render.bind(this))
+            } else {
+                setTimeout(() => {
+                    this.calculateFps(currentTime)
+                    requestAnimationFrame(this.render.bind(this))
+                }, this.frameDelay - elapsed)
+            }
         }
     }
 }

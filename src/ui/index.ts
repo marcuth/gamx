@@ -1,16 +1,16 @@
 import _WidgetManager from "./widget-manager"
 import _SubScreen from "./sub-screen"
-import _UiButton from "./button"
+import _Button from "./button"
 import _Screen from "./screen"
-import _Entity from "./entity"
+import _Component from "./component"
 import _Widget from "./widget"
 
 export module ui {
     export const WidgetManager = _WidgetManager
-    export abstract class SubScreen extends _SubScreen {}
-    export const UiButton = _UiButton
+    export const SubScreen = _SubScreen
+    export const Button = _Button
     export const Screen = _Screen
-    export abstract class Entity extends _Entity {}
+    export abstract class Component extends _Component {}
     export abstract class Widget extends _Widget {}
 }
 

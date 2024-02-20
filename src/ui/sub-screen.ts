@@ -1,17 +1,27 @@
-import Entity from "./entity"
+import Component from "./component"
+import { GamxState } from "gamx"
 
 export type SubScreenOptions = {
-    entities: Entity[]
+    ctx: CanvasRenderingContext2D
+    components: Component[]
+    gameState: GamxState
 }
 
-abstract class SubScreen {
-    public entities: Entity[]
+class SubScreen {
+    public ctx: CanvasRenderingContext2D
+    public components: Component[]
 
-    public constructor({ entities }: SubScreenOptions) {
-        this.entities = entities
+    public constructor({
+        ctx,
+        components,
+        gameState
+    }: SubScreenOptions) {
+        this.ctx = ctx
+        this.components = components
+        this.setup()
     }
 
-    public abstract setup(): any
+    public setup(): void {}
 }
 
 export default SubScreen

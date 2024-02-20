@@ -66,8 +66,8 @@ class Screen extends Observable {
 
         canvas.id = uuidv4()
 
-        canvas.width = this.size.width
-        canvas.height = this.size.height
+        canvas.width = size.width
+        canvas.height = size.height
         
         element.appendChild(canvas)
         this.notifyAll("canvasCreated", canvas)

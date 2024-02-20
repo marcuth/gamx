@@ -47,8 +47,12 @@ class Gamx {
         this.setup()
     }
 
-    public setState(newState: GamxState): void {
+    public updateState(newState: GamxState): void {
         this.state = Object.assign(this.state, newState)
+    }
+
+    public setState(newState: GamxState): void {
+        this.state = {...newState}
     }
 
     public setup(): void {}

@@ -40,7 +40,7 @@ class WidgetManager extends Observable {
     public removeAllWidgets(): void {
         this.widgets.forEach(widget => widget.destroy())
         this.widgets = []
-        this.notifyAll("AllWidgetsRemoved")
+        this.notifyAll("allWidgetsRemoved")
     }
 }
 
