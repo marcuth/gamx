@@ -6,22 +6,22 @@ export type SubScreenOptions = {
     components: Component[]
 }
 
-class SubScreen<T = GamxState> {
+class SubScreen<GameState = GamxState> {
     public ctx: CanvasRenderingContext2D
     public components: Component[]
-    public gameState:T
+    public gameState: GameState
 
     public constructor({
         ctx,
         components,
         gameState
     }: SubScreenOptions & {
-        gameState: T
+        gameState: GameState
     }) {
         this.ctx = ctx
         this.components = components
         this.gameState = gameState
-        this.setup()
+        this.setup.bind(this)()
     }
 
     public setup(): void {}
