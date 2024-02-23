@@ -13,11 +13,11 @@ class Renderer extends Observable {
     public fps: number
     public targetFps?: number
     public frameDelay: number
+    public subScreen?: SubScreen<any, any>
+    public lastFrameTime: number
+    public defaultBackgroundColor: string
 
     private canvas: HTMLCanvasElement
-    private subScreen?: SubScreen<any, any>
-    private defaultBackgroundColor: string
-    private lastFrameTime: number
 
     public constructor({
         canvas,
