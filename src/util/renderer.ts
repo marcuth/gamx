@@ -3,7 +3,7 @@ import SubScreen from "../ui/sub-screen"
 
 export type RendererOptions = {
     canvas: HTMLCanvasElement
-    subScreen?: SubScreen
+    subScreen?: SubScreen<any, any>
     defaultBackgroundColor: string
     targetFps?: number
 }
@@ -15,7 +15,7 @@ class Renderer extends Observable {
     public frameDelay: number
 
     private canvas: HTMLCanvasElement
-    private subScreen?: SubScreen
+    private subScreen?: SubScreen<any, any>
     private defaultBackgroundColor: string
     private lastFrameTime: number
 
@@ -63,7 +63,7 @@ class Renderer extends Observable {
         }
     }
 
-    public setSubScreen(newSubScreen: SubScreen): void {
+    public setSubScreen(newSubScreen: SubScreen<any, any>): void {
         this.subScreen = newSubScreen
     }
 
