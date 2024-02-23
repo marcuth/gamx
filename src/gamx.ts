@@ -50,8 +50,8 @@ class Gamx<GameState = GamxState> {
         this.afterSetup.bind(this)()
     }
 
-    public updateState(newState: GameState): void {
-        this.state = Object.assign(this.state as object, newState)
+    public updateState(newState: Partial<GameState>): void {
+        this.state = Object.assign(this.state as object, newState) as GameState
     }
 
     public setState(newState: GameState): void {

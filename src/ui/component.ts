@@ -2,7 +2,7 @@ class Component<Props = void> {
     protected props: Props
 
     public constructor(props: Props) {
-        this.props = props as Props
+        this.props = props
     }
 
     public setProps(newProps: Props): void {
