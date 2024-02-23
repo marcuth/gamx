@@ -8,7 +8,7 @@ export type SubScreenOptions = {
 
 class SubScreen<GameState = GamxState> {
     public ctx: CanvasRenderingContext2D
-    public components: Component[]
+    public components: Component<any>[]
     public gameState: GameState
 
     public constructor({
