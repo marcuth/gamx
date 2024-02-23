@@ -1,5 +1,5 @@
 class Component<Props = void> {
-    private props: Props
+    protected props: Props
 
     public constructor(props: Props) {
         this.props = props as Props
