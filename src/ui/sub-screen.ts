@@ -21,10 +21,14 @@ class SubScreen<GameState = GamxState> {
         this.ctx = ctx
         this.components = components
         this.gameState = gameState
+        
         this.setup.bind(this)()
+        this.afterSetup.bind(this)()
     }
 
     public setup(): void {}
+
+    public afterSetup(): void {}
 }
 
 export default SubScreen

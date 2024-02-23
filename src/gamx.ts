@@ -46,7 +46,8 @@ class Gamx<GameState = GamxState> {
 
         this.state = state
 
-        this.setup()
+        this.setup.bind(this)()
+        this.afterSetup.bind(this)()
     }
 
     public updateState(newState: GameState): void {
@@ -58,6 +59,8 @@ class Gamx<GameState = GamxState> {
     }
 
     public setup(): void {}
+
+    public afterSetup(): void {}
 
     public destroy(): void {
         this.renderer.pause()
