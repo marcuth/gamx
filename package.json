@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc"
   },
-  "keywords": [],
+  "keywords": ["game", "borwser", "canvas"],
   "author": "Marcuth",
   "license": "ISC",
   "dependencies": {
