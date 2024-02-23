@@ -6,7 +6,6 @@ class WidgetManager extends Observable {
 
     public constructor() {
         super()
-    
         this.widgets = []
     }
 

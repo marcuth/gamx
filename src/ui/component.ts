@@ -1,4 +1,4 @@
-abstract class Component<Props = void> {
+class Component<Props = void> {
     private props: Props
 
     public constructor(props: Props) {
@@ -9,7 +9,7 @@ abstract class Component<Props = void> {
         this.props = newProps
     }
 
-    public abstract draw(ctx: CanvasRenderingContext2D): any
+    public draw(ctx: CanvasRenderingContext2D): void {}
 }
 
 export default Component
