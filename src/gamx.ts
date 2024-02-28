@@ -1,6 +1,7 @@
 import KeyboardListener from "./util/keyboard-listener"
 import ResourceLoader from "./util/resource-loader"
 import Screen, { ScreenSize } from "./ui/screen"
+import AudioManager from "util/audio-manager"
 import Renderer from "./util/renderer"
 
 export type GamxOptions = {
@@ -20,6 +21,7 @@ class Gamx<GameState = GamxState> {
     public screen: Screen
     public renderer: Renderer
     public keyboardListener: KeyboardListener
+    public audioManager: AudioManager
     public state: GameState
     
     public constructor({
@@ -44,6 +46,8 @@ class Gamx<GameState = GamxState> {
 
         this.keyboardListener = new KeyboardListener({ document: document })
 
+        this.audioManager = new AudioManager()
+
         this.state = state
 
         this.setup.bind(this)()
@@ -66,6 +70,7 @@ class Gamx<GameState = GamxState> {
         this.renderer.pause()
         this.keyboardListener.destroy()
         this.screen.destroy()
+        this.audioManager.destroy()
     }
 }
 
