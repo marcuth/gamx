@@ -1,7 +1,7 @@
 {
   "name": "gamx",
   "declaration": "./dist/index.d.ts",
-  "version": "1.2.5",
+  "version": "1.3.0",
   "description": "Gamx is a library to help create JavaScript games for the browser.",
   "main": "./dist/index.js",
   "scripts": {
