@@ -31,7 +31,7 @@ function loadResource(resource: ResourceItem, loader: ResourceLoader, callback: 
 }
 
 class ResourceLoader extends Observable {
-    public resources: ResourceItem[]
+    public readonly resources: ResourceItem[]
     private elementsToDestroy: HTMLElement[]
     private eventListenersToDestroy: EventListenerToDestroy[]
     public loadedCount: number

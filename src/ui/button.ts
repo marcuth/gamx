@@ -24,17 +24,17 @@ export type ImageClipping = {
     height: number
 }
 class Button extends Observable implements Widget {
-    public id: string
-    public ctx: CanvasRenderingContext2D
-    public coordinates: Coordinates
-    public width: number
-    public height: number
-    public image?: HTMLImageElement
-    public imageMouseOver?: HTMLImageElement
-    public imageClipping?: ImageClipping
-    public imageMouseOverClipping?: ImageClipping
-    public color?: string
-    public colorMouseOver?: string
+    public readonly id: string
+    public readonly ctx: CanvasRenderingContext2D
+    public readonly coordinates: Coordinates
+    public readonly width: number
+    public readonly height: number
+    public readonly image?: HTMLImageElement
+    public readonly imageMouseOver?: HTMLImageElement
+    public readonly imageClipping?: ImageClipping
+    public readonly imageMouseOverClipping?: ImageClipping
+    public readonly color?: string
+    public readonly colorMouseOver?: string
 
     private isEventListenersAdded: boolean = false
     private lastMouseMovementCheck: number = 0

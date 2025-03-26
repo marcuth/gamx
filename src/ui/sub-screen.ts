@@ -7,9 +7,9 @@ export type SubScreenOptions = {
 }
 
 class SubScreen<GameState = GamxState, SetupProps = void> {
-    public ctx: CanvasRenderingContext2D
-    public components: Component<any>[]
-    public gameState: GameState
+    public readonly ctx: CanvasRenderingContext2D
+    public readonly components: Component<any>[]
+    public readonly gameState: GameState
     protected setupProps?: SetupProps
 
     public constructor({

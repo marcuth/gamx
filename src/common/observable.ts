@@ -3,7 +3,7 @@ export type ObserverAsync = (event: string, ...args: any[]) => Promise<any>
 export type Observer = ObserverSync | ObserverAsync
 
 class Observable {
-    protected observers: Observer[]
+    protected readonly observers: Observer[]
 
     public constructor() {
         this.observers = []

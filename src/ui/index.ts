@@ -5,7 +5,7 @@ import _Button from "./button"
 import _Screen from "./screen"
 import _Widget from "./widget"
 
-export module ui {
+namespace Ui {
     export const WidgetManager = _WidgetManager
     export const SubScreen = _SubScreen
     export const Component = _Component
@@ -14,4 +14,4 @@ export module ui {
     export abstract class Widget extends _Widget {}
 }
 
-export default ui
+export default Ui

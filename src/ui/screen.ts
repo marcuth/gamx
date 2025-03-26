@@ -30,8 +30,8 @@ export class ScreenRootNotFoundError extends Error {
 }
 
 class Screen extends Observable {
-    public canvas: HTMLCanvasElement
-    public widgetManager: WidgetManager
+    public readonly canvas: HTMLCanvasElement
+    public readonly widgetManager: WidgetManager
     public size: ScreenSize
 
     public constructor({

@@ -12,7 +12,7 @@ export type KeyboardListenerOptions = {
 }
 
 class KeyboardListener extends Observable {
-    public document: Document
+    public readonly document: Document
 
     public constructor({ document }: KeyboardListenerOptions) {
         super()

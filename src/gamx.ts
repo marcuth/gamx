@@ -12,16 +12,14 @@ export type GamxOptions = {
     state: any
 }
 
-export type GamxState = {
-    [key: string]: any
-}
+export type GamxState = Record<string, any>
 
 class Gamx<GameState = GamxState> {
-    public resourceLoader: ResourceLoader
-    public screen: Screen
-    public renderer: Renderer
-    public keyboardListener: KeyboardListener
-    public audioManager: AudioManager
+    public readonly resourceLoader: ResourceLoader
+    public readonly screen: Screen
+    public readonly renderer: Renderer
+    public readonly keyboardListener: KeyboardListener
+    public readonly audioManager: AudioManager
     public state: GameState
     
     public constructor({

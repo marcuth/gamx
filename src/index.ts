@@ -1,12 +1,12 @@
-import common from "./common"
+import Common from "./common"
 import Gamx from "./gamx"
-import util from "./util"
-import ui from "./ui"
+import Util from "./util"
+import Ui from "./ui"
 
 export {
-    common,
-    util,
-    ui
+    Common,
+    Util,
+    Ui
 }
 
 export default Gamx

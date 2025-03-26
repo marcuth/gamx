@@ -1,7 +1,7 @@
 import _Observable from "./observable"
 
-module common {
+namespace Common {
     export const Observable = _Observable
 }
 
-export default common
+export default Common

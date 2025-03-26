@@ -15,7 +15,7 @@ class Renderer extends Observable {
     public frameDelay: number
     public subScreen?: SubScreen<any, any>
     public lastFrameTime: number
-    public defaultBackgroundColor: string
+    public readonly defaultBackgroundColor: string
 
     private canvas: HTMLCanvasElement
 
