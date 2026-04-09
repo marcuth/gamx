@@ -1,7 +1,7 @@
 # Gamx 🎮
 
 [![npm version](https://img.shields.io/npm/v/gamx.svg)](https://www.npmjs.com/package/gamx)
-[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Gamx is a lightweight, flexible JavaScript game library designed to simplify the creation of browser-based games using the Canvas API.
 
@@ -150,7 +150,7 @@ game.renderer.on('frame', () => {
 
 ## 📄 License
 
-This project is licensed under the [ISC License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 Developed with ❤️ by [Marcuth](https://github.com/1Marcuth)
