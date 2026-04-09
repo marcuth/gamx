@@ -7,13 +7,14 @@
   "scripts": {
     "build": "tsc"
   },
-  "keywords": ["game", "borwser", "canvas"],
+  "keywords": [
+    "game",
+    "borwser",
+    "canvas"
+  ],
   "author": "Marcuth",
   "license": "ISC",
-  "dependencies": {
-    "uuid": "^9.0.1"
-  },
   "devDependencies": {
-    "@types/uuid": "^9.0.8"
+    "typescript": "^6.0.2"
   }
 }

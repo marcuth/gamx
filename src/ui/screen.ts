@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid"
-
 import Observable from "../common/observable"
 import WidgetManager from "./widget-manager"
 
@@ -64,7 +62,7 @@ class Screen extends Observable {
     }: CreateCanvasInsideOptions): HTMLCanvasElement {
         const canvas = document.createElement("canvas")
 
-        canvas.id = uuidv4()
+        canvas.id = crypto.randomUUID()
 
         canvas.width = size.width
         canvas.height = size.height

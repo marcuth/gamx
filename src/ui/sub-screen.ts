@@ -1,5 +1,5 @@
 import Component from "./component"
-import { GamxState } from "gamx"
+import { GamxState } from "../gamx"
 
 export type SubScreenOptions = {
     ctx: CanvasRenderingContext2D

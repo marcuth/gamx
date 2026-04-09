@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "uuid"
+
 
 import { Coordinates } from "../common/types"
 import Observable from "../common/observable"
@@ -53,7 +53,7 @@ class Button extends Observable implements Widget {
         colorMouseOver
     }: ButtonOptions) {
         super()
-        this.id = uuidv4()
+        this.id = crypto.randomUUID()
         this.ctx = ctx
         this.coordinates = coordinates
         this.width = width

@@ -1,22 +1,22 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "target": "es6",
-    "module": "commonjs",
+    "target": "ES6",
+    "module": "ESNext",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
-    "baseUrl": "./src",
+    "rootDir": "./src",
     "outDir": "./dist/"
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
+    "src"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
-}
+}
